@@ -1,0 +1,6 @@
+http://localhost/socialproyect/video/eloise.mp4
+http://localhost/socialproyect/video/popeye.ogv
+http://localhost/socialproyect/video/video.ogv
+http://localhost/socialproyect/video/ChopSuey.ogv
+http://localhost/socialproyect/video/Misery.ogv
+http://localhost/socialproyect/video/Toxicity.ogv

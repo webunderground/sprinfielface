@@ -1,0 +1,8 @@
+img/homero.jpg
+img/Bartina.jpg
+img/Beavis.jpg
+img/Brain.jpg
+img/Carl.jpg
+img/COCA-COLA.jpg
+img/devil.jpg
+img/Blinky.jpg

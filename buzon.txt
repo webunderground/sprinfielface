@@ -1,0 +1,182 @@
+<?php
+	require_once('common.php');
+	checkUser();
+?>
+<?php
+    require_once('gmail.php');
+    require_once('db/db_connection.php');
+    $user=$_SESSION['userName']; 
+    $sql = "SELECT * FROM profile ORDER BY insertdate DESC";
+    $result = $MyDb->f_ExecuteSql($sql);
+    $recordcount = $MyDb->f_GetSelectedRows(); 
+    $personal="SELECT * FROM `profile` WHERE  `name` = '$user' AND `location` = 'personal'";
+    $resultpersonal= $MyDb->f_ExecuteSql($personal);
+    $recordcount = $MyDb->f_GetSelectedRows();
+	$social="SELECT * FROM `profile` WHERE  `name` = '$user' AND `location` = 'social'";
+    $resultsocial= $MyDb->f_ExecuteSql($social);
+    $recordcount = $MyDb->f_GetSelectedRows();
+    $laboral="SELECT * FROM `profile` WHERE `name` = '$user' AND `location` = 'laboral'";
+    $resultlaboral= $MyDb->f_ExecuteSql($laboral);
+    $recordcount = $MyDb->f_GetSelectedRows();
+    $proyectos="SELECT * FROM `profile` WHERE `name` = '$user' AND `location` = 'proyectos'";
+    $resultproyectos= $MyDb->f_ExecuteSql($proyectos);
+    $recordcount = $MyDb->f_GetSelectedRows();
+    $buzon="SELECT * FROM `profile` WHERE  `email` = '$user'";
+    $resultbuzon= $MyDb->f_ExecuteSql($buzon);
+    $recordcount = $MyDb->f_GetSelectedRows();
+ 
+ 
+	
+	
+    
+?>
+
+ 
+
+
+
+
+
+
+
+<button onclick="myFunction('Demo1')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i>personal</button>
+          <div id="Demo1" class="w3-hide w3-container">
+            <p><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i>
+          
+																
+															<?php while ($row = $MyDb->f_GetRecord($resultpersonal)) { ?>
+
+        <div class='w3-container w3-card-2 w3-white w3-round w3-margin'>
+
+		<div id="name">para:<?php echo $row['name']; ?></div>
+         <div id="name">de:<?php echo $row['email']; ?><img src="img/<?php echo $row['email']; ?>.jpg" class="w3-circle" style="height:50px;width:50px" alt="Avatar"></div>
+		          
+         <div id="info">
+           <div id="infoicons">
+             <?php 
+                if (strlen($row['web']) > 5) echo '<a href="http://'.$row['web'].'"><img src="www.gif" /></a>';
+                if (strlen($row['email']) > 5) echo '<a href="mailto:'.$row['email'].'"><img src="mail.gif" /></a>';
+             ?>
+           </div>
+           <div id="infodate"><?php echo $row['insertdate']; ?></div>
+         </div>  
+         <div id="icon"><?php echo $row['location']; ?></div>
+         <div id="text"><?php echo nl2br($row['text']); ?></div><br>
+        
+
+<?php } ?>
+
+
+<br>
+
+<button onclick="myFunction('Demo2')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i>social</button>
+          <div id="Demo2" class="w3-hide w3-container">
+            <p><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i>
+          
+																
+															<?php while ($row = $MyDb->f_GetRecord($resultsocial)) { ?>
+
+        <div class='w3-container w3-card-2 w3-white w3-round w3-margin'>
+
+		<div id="name">para:<?php echo $row['name']; ?></div>
+         <div id="name">de:<?php echo $row['email']; ?><img src="img/<?php echo $row['email']; ?>.jpg" class="w3-circle" style="height:50px;width:50px" alt="Avatar"></div>
+		          
+         <div id="info">
+           <div id="infoicons">
+             <?php 
+                if (strlen($row['web']) > 5) echo '<a href="http://'.$row['web'].'"><img src="img/www.gif" /></a>';
+                if (strlen($row['email']) > 5) echo '<a href="mailto:'.$row['email'].'"><img src="img/mail.gif" /></a>';
+             ?>
+           </div>
+           <div id="infodate"><?php echo $row['insertdate']; ?></div>
+         </div>  
+         <div id="icon"><?php echo $row['location']; ?></div>
+         <div id="text"><?php echo nl2br($row['text']); ?></div><br>
+        
+
+<?php } ?>
+
+
+			
+		   
+          
+	  
+	 
+<button onclick="myFunction('Demo4')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i>proyectos</button>
+          <div id="Demo4" class="w3-hide w3-container">
+            <p><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i>
+          
+																
+															<?php while ($row = $MyDb->f_GetRecord($resultproyectos)) { ?>
+
+        <div class='w3-container w3-card-2 w3-white w3-round w3-margin'>
+
+		<div id="name">para:<?php echo $row['name']; ?></div>
+         <div id="name">de:<?php echo $row['email']; ?><img src="img/<?php echo $row['email']; ?>.jpg" class="w3-circle" style="height:50px;width:50px" alt="Avatar"></div>
+		          
+         <div id="info">
+           <div id="infoicons">
+             <?php 
+                if (strlen($row['web']) > 5) echo '<a href="http://'.$row['web'].'"><img src="img/www.gif" /></a>';
+                if (strlen($row['email']) > 5) echo '<a href="mailto:'.$row['email'].'"><img src="img/mail.gif" /></a>';
+             ?>
+           </div>
+           <div id="infodate"><?php echo $row['insertdate']; ?></div>
+         </div>  
+         <div id="icon"><?php echo $row['location']; ?></div>
+         <div id="text"><?php echo nl2br($row['text']); ?></div><br>
+        
+
+<?php } ?>
+
+
+			
+		  
+         
+
+	     
+        
+         
+<button onclick="myFunction('Demo5')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i>laboral</button>
+          <div id="Demo5" class="w3-hide w3-container">
+            <p><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i>
+          
+																
+															<?php while ($row = $MyDb->f_GetRecord($resultlaboral)) { ?>
+
+        <div class='w3-container w3-card-2 w3-white w3-round w3-margin'>
+
+		<div id="name">para:<?php echo $row['name']; ?></div>
+         <div id="name">de:<?php echo $row['email']; ?><img src="img/<?php echo $row['email']; ?>.jpg" class="w3-circle" style="height:50px;width:50px" alt="Avatar"></div>
+		          
+         <div id="info">
+           <div id="infoicons">
+             <?php 
+                if (strlen($row['web']) > 5) echo '<a href="http://'.$row['web'].'"><img src="img/www.gif" /></a>';
+                if (strlen($row['email']) > 5) echo '<a href="mailto:'.$row['email'].'"><img src="img/mail.gif" /></a>';
+             ?>
+           </div>
+           <div id="infodate"><?php echo $row['insertdate']; ?></div>
+         </div>  
+         <div id="icon"><?php echo $row['location']; ?></div>
+         <div id="text"><?php echo nl2br($row['text']); ?></div><br>
+        
+
+<?php } ?>
+
+
+
+
+
+
+
+
+
+
+ <div class="w3-col m7">
+    
+      <div class="w3-row-padding">
+        <div class="w3-col m12">
+          <div class="w3-card-2 w3-round w3-white">
+            <div class="w3-container w3-padding">
+            
